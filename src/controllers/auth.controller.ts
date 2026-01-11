@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
 // import prisma from "../config/prisma";
 import bcrypt from "bcryptjs";
-import prisma from "../config/prisma.js";
+import { prisma } from "../config/prisma.js";
+// import { PrismaClient } from "@prisma/client";
+// const prisma = new PrismaClient();
 
 export const signup = async (req: Request, res: Response) => {
   try {
@@ -9,11 +11,13 @@ export const signup = async (req: Request, res: Response) => {
 
     // Basic validation
     if (!email || !password) {
-      return res.status(400).json({ message: "Email and password are required" });
+      return res
+        .status(400)
+        .json({ message: "Email and password are required" });
     }
 
     // Check if user already exists
-    const existingUser = await prisma.user.findUnique({
+    const existingUser = await prisma?.user.findUnique({
       where: { email },
     });
 
@@ -25,7 +29,7 @@ export const signup = async (req: Request, res: Response) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create user
-    const user = await prisma.user.create({
+    const user = await prisma?.user.create({
       data: {
         name,
         email,
@@ -33,7 +37,16 @@ export const signup = async (req: Request, res: Response) => {
       },
     });
 
-    return res.status(201).json({ message: "Signup successful", userId: user.id });
+    return res.status(201).json({
+      Success: true,
+      Code: 201,
+      Message: "Signup successful",
+      Data: {
+        UserId: user?.id,
+        UserName: user?.name,
+        UserEmail: user?.email,
+      },
+    });
   } catch (error) {
     console.error("SIGNUP ERROR:", error);
     return res.status(500).json({ message: "Internal server error" });

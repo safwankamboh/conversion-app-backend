@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",                  // Modern JS output
+    "module": "NodeNext",                // Node + ESM
+    "moduleResolution": "NodeNext",      // ESM path resolution
+    "outDir": "dist",                     // Compiled files folder
+    "rootDir": "src",                     // Source folder
+    "strict": true,                       // Enable strict TS checks
+    "esModuleInterop": true,              // Default import support for CJS
+    "forceConsistentCasingInFileNames": true, 
+    "skipLibCheck": true,                 // Skip type checking of node_modules
+    "resolveJsonModule": true             // If you want to import JSON files
+  },
+  "include": ["src/**/*"],
+}

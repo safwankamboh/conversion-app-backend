@@ -9,7 +9,9 @@
     "esModuleInterop": true,              // Default import support for CJS
     "forceConsistentCasingInFileNames": true, 
     "skipLibCheck": true,                 // Skip type checking of node_modules
-    "resolveJsonModule": true             // If you want to import JSON files
+    "resolveJsonModule": true,            // If you want to import JSON files
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "src/config"],
 }

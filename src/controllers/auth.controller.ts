@@ -46,6 +46,9 @@ export const signup = async (req: Request, res: Response) => {
         Name: user.name,
         Email: user.email,
       },
+      MetaData:{
+        CreatedAt: user.createdAt
+      }
     });
   } catch (error) {
     console.error("SIGNUP ERROR:", error);
